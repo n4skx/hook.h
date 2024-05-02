@@ -35,7 +35,7 @@ BOOL H_HookFunction(
 #else
 	UCHAR Patch[] = { 0xE9, 0x00, 0x00, 0x00, 0x00 };
 
-	// Setup offset
+	// Calc offset
 	DWORD Source = (DWORD) Hook->FuncPtr + 5;
 	DWORD Destine = (DWORD) Hook->MyFuncPtr;
 	DWORD Offset = (DWORD)(Destine - Source);
