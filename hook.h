@@ -9,17 +9,10 @@
 
 typedef struct
 {
-#ifdef _WIN64
 	PVOID FuncPtr;
 	PVOID MyFuncPtr;
 	PVOID SavedBytes;
 	DWORD PatchSize;
-#else
-	PVOID FuncPtr;
-	PVOID MyFuncPtr;
-	PVOID SavedBytes;
-	DWORD PatchSize;
-#endif
 } H_Hooks;
 
 //
@@ -42,7 +35,7 @@ BOOL H_HookFunction(
 #else
 	UCHAR Patch[] = { 0xE9, 0x00, 0x00, 0x00, 0x00 };
 
-	// Setup patch
+	// Setup offset
 	DWORD Source = (DWORD) Hook->FuncPtr + 5;
 	DWORD Destine = (DWORD) Hook->MyFuncPtr;
 	DWORD Offset = (DWORD)(Destine - Source);
